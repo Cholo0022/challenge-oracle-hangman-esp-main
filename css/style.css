@@ -1,9 +1,7 @@
-
 .titulo {
   padding: 15px;
   width: 30vw;
   margin: auto;
-
 }
 
 .btn {
@@ -15,6 +13,7 @@
   margin-top: 10px;
   margin-bottom: 10px;
   border-radius: 0.5em;
+  cursor: pointer;
 }
 
 .text-input {
