@@ -1,3 +1,8 @@
+body {
+  background-color: aquamarine;
+  color: rgba(12, 11, 11, 0.705);
+}
+
 .titulo {
   padding: 15px;
   width: 30vw;
@@ -8,11 +13,11 @@
   border: 0;
   color: white;
   font-weight: bold;
-  background-color: blue;
+  background-color: mediumblue;
   padding: 10px;
   margin-top: 10px;
   margin-bottom: 10px;
-  border-radius: 0.5em;
+  border-radius: 2em;
   cursor: pointer;
 }
 
