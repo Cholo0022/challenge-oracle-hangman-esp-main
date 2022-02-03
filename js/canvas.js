@@ -6,14 +6,26 @@ function dibujarTablero() {
   return pincel;
 }
 
-/*
 function dibujarLetraCorrecta(letra) {
-  lienzo.fillStyle = "rgb(255,0,0)";
-  lienzo.font = "bold 25px Arial";
-  lienzo.fillText(letra, 150, 50);
-  lienzo.textAlign = "center";
+  var pantalla = document.querySelector("#ahorcado");
+  var pincel = pantalla.getContext("2d");
+
+  pincel.fillStyle = "rgb(255,0,0)";
+  pincel.font = "bold 25px Arial";
+  pincel.fillText(letra, 150, 50);
+  pincel.textAlign = "right";
 }
-*/
+
+function dibujarLetraIncorrecta(letra) {
+  var pantalla = document.querySelector("#ahorcado");
+  var pincel = pantalla.getContext("2d");
+
+  pincel.fillStyle = "rgb(255,0,0)";
+  pincel.font = "bold 25px Arial";
+  pincel.fillText(letra, 150, 50);
+  pincel.textAlign = "left";
+}
+
 /*function dibujarBaseAhorcado(x) {
   pincel.fillStyle = "black";
   pincel.beginPath();
