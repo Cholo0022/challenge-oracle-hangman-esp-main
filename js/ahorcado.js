@@ -7,6 +7,7 @@ function palabraSecreta() {
 
 function verificarTeclaPresionada() {
   var palabra = palabraSecreta();
+  var intentos = 0;
   console.log(palabra)
   var patron = /^[A-ZÑ\s]+$/;
   window.addEventListener("keydown", function (event) {
@@ -23,7 +24,9 @@ function verificarTeclaPresionada() {
     }
     if (!letraValida) {
       dibujarLetraIncorrecta(event.key)
-      dibujarHorca()
+      intentos += 1;
+      console.log(intentos)
+      dibujarHorca(intentos)
     }
     return letraValida; 
   });
@@ -41,27 +44,5 @@ function inicioJuego() {
   });
 }
 inicioJuego();
-/*
-function verificarTecla() {
-  var letraValida = false;
-  var letra;
-  var patron = /^[a-zñ\s]+$/;
-  window.addEventListener("keydown", function (event) {
-    event.preventDefault();
-    if (patron.test(event.key)) {
-      letra = event.key;
-      console.log("Letra valida " + letraValida);
-    }
-    var palabra = palabraSecreta();
-    for (var i = 0; i < palabra.length; i++) {
-      if (letra == palabra[i]) {
-        dibujarLetraCorrecta(letra);
-      }
-      dibujarLetraIncorrecta(letra);
-    }
-  });
-  return letra;
-}
 
-inicioJuego();
-*/
+
