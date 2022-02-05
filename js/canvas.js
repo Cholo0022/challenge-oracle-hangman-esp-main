@@ -74,7 +74,37 @@ function dibujarHorca() {
     pincel.arc(400, y, 5, 0, 2 * 3.14);
     pincel.fill();  
   }
-  //error 6
+  //error 6 brazo izq
+  pincel.lineWidth = 10;
+  pincel.strokeStyle = "black";
+  pincel.beginPath();
+  pincel.moveTo(250, 350);
+  pincel.lineTo(400, 450);
+  pincel.stroke();
   
+  //error 7 brazo der
+  pincel.lineWidth = 10;
+  pincel.strokeStyle = "black";
+  pincel.beginPath();
+  pincel.moveTo(400, 450);
+  pincel.lineTo(550, 350);
+  pincel.stroke();
+  
+  //error 8 pierna izq
+  pincel.lineWidth = 10;
+  pincel.strokeStyle = "black";
+  pincel.beginPath();
+  pincel.moveTo(400, 550);
+  pincel.lineTo(300, 700);
+  pincel.stroke();
+
+  //error 8 pierna der
+  pincel.lineWidth = 10;
+  pincel.strokeStyle = "black";
+  pincel.beginPath();
+  pincel.moveTo(400, 550);
+  pincel.lineTo(500, 700);
+  pincel.stroke();
+
 }
 dibujarHorca()
