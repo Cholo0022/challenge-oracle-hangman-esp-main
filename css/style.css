@@ -1,6 +1,8 @@
 body {
   background-color: aquamarine;
   color: rgba(12, 11, 11, 0.705);
+  margin: 0;
+  padding: 0;
 }
 
 .titulo {
@@ -30,4 +32,19 @@ body {
   height: 50px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.footer{
+  background-color: white;
+  color: black;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 4em;
+}
+
+.footer p{
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 1.5em;
 }

@@ -10,13 +10,27 @@ function inicioJuego() {
 }
 inicioJuego();
 
+var listadoPalabras = ["ALURA", "ORACLE", "JAVASCRIPT", "HTML"];
+
 function palabraSecreta() {
-  var listadoPalabras = ["ALURA", "ORACLE", "JAVASCRIPT", "HTML"];
+ 
   var indice = Math.round(Math.random() * (listadoPalabras.length - 1));
   var palabraAlAzar = listadoPalabras[indice];
   dibujarLineas(palabraAlAzar.length);
   return palabraAlAzar;
 }
+
+function agregarPalabra() {
+  var btnAgregarPalabra = document.querySelector("#nueva-palabra");
+  btnAgregarPalabra.addEventListener("click", function () {
+    var inputNuevaPalabra = document.querySelector("#input-nueva-palabra");
+    if (inputNuevaPalabra != "") {
+      listadoPalabras.push(inputNuevaPalabra.value);
+      console.log(listadoPalabras)
+    }
+    })
+}
+agregarPalabra();
 
 function verificarTeclaPresionada() {
   var palabra = palabraSecreta();
@@ -55,3 +69,4 @@ function finDelJuego(intentos) {
     dibujarFinDelJuego();
   }
 }
+
