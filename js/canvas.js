@@ -98,6 +98,11 @@ function dibujarHorca(intentos) {
     pincel.lineTo(500, 700);
     pincel.stroke();
   }
+  if (intentos >= 10) {
+    location.reload();
+  }
+
+  return;
 }
 
 function dibujarFinDelJuego() {
@@ -106,8 +111,12 @@ function dibujarFinDelJuego() {
 
   pincel.fillStyle = "red";
   pincel.font = "bold 50px Arial";
-  pincel.fillText("Fin del Juego...Perdiste!!!", 500, 500);
+  pincel.fillText("Fin del juego", 500, 500);
+  pincel.fillStyle = "black";
+  pincel.font = "bold 15px Arial";
+  pincel.fillText("Precione cualquier tecla para terminar", 500, 550);
   pincel.textAlign = "left";
+  return;
 }
 
 function dibujarGanaste() {
@@ -116,8 +125,16 @@ function dibujarGanaste() {
 
   pincel.fillStyle = "blue";
   pincel.font = "bold 50px Arial";
-  pincel.fillText("Felicidades ganaste!!!", 900, 500);
+  pincel.fillText("Ganaste, Felicidades!", 900, 500);
   pincel.textAlign = "left";
+  pincel.fillStyle = "black";
+  pincel.font = "bold 15px Arial";
+  pincel.fillText("Precione cualquier tecla para terminar", 500, 550);
+  window.addEventListener("keydown", function (event) {
+    event.preventDefault();
+    location.reload();
+  });
+  return;
 }
 
 function dibujarLineas(cantidad) {
@@ -138,19 +155,18 @@ function dibujarLetraCorrecta(letraCorrecta, posicion) {
   var pantalla = document.querySelector("#ahorcado");
   var pincel = pantalla.getContext("2d");
 
-  if (posicion < 1) {
+  if (posicion == 0) {
     pincel.fillStyle = "blue";
     pincel.font = "bold 25px Arial";
-    pincel.fillText(letraCorrecta, posicion * 40 + 610, 775);
+    pincel.fillText(letraCorrecta, posicion * 40 + 607, 775);
     pincel.textAlign = "right";
-  } else {
+  }
+  if (posicion >= 1) {
     pincel.fillStyle = "blue";
     pincel.font = "bold 25px Arial";
     pincel.fillText(letraCorrecta, posicion * 40 + 625, 775);
     pincel.textAlign = "right";
   }
-
-  return posicion;
 }
 
 function dibujarLetraIncorrecta(letraIncorrecta, posicion) {
@@ -163,4 +179,5 @@ function dibujarLetraIncorrecta(letraIncorrecta, posicion) {
   pincel.textAlign = "left";
 
   dibujarHorca();
+  return;
 }

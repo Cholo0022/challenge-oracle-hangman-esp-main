@@ -7,13 +7,14 @@ function inicioJuego() {
     dibujarTablero();
     verificarTeclaPresionada();
   });
+  return;
 }
 inicioJuego();
+//agregarPalabra();
 
 var listadoPalabras = ["ALURA", "ORACLE", "JAVASCRIPT", "HTML"];
 
 function palabraSecreta() {
- 
   var indice = Math.round(Math.random() * (listadoPalabras.length - 1));
   var palabraAlAzar = listadoPalabras[indice];
   dibujarLineas(palabraAlAzar.length);
@@ -22,26 +23,40 @@ function palabraSecreta() {
 
 function agregarPalabra() {
   var btnAgregarPalabra = document.querySelector("#nueva-palabra");
+  var patron = /^[A-ZÑ\s]+$/;
   btnAgregarPalabra.addEventListener("click", function () {
     var inputNuevaPalabra = document.querySelector("#input-nueva-palabra");
-    if (inputNuevaPalabra != "") {
-      listadoPalabras.push(inputNuevaPalabra.value);
-      console.log(listadoPalabras)
+    var palabraNueva = inputNuevaPalabra.value;
+
+    if (patron.test(palabraNueva)) {
+      listadoPalabras.push(palabraNueva);
+      console.log(listadoPalabras);
     }
-    })
+  });
+  return;
 }
-agregarPalabra();
 
 function verificarTeclaPresionada() {
   var palabra = palabraSecreta();
   var intentos = 0;
   var largoPalabra = 0;
   console.log(palabra);
-  var patron = /^[A-ZÑ]+$/;
+  //var patron = new RegExp("[A-Z]+");
+  var patron = /^[A-ZÑ\s]+$/;
+  var letraRepetida = [];
+
   window.addEventListener("keydown", function (event) {
-    event.preventDefault();
+    var repetida = false;
     var letraValida = false;
-    if (patron.test(event.key)) {
+    for (var x = 0; x < letraRepetida.length; x++) {
+      if (letraRepetida[x] === event.key) {
+        console.log("Letra " + event.key + " repetida");
+        repetida = true;
+      }
+    }
+    if (patron.test(event.key) && !repetida) {
+      //repetida = false;
+      letraRepetida.push(event.key);
       for (var i = 0; i < palabra.length; i++) {
         if (palabra[i] === event.key) {
           largoPalabra += 1;
@@ -53,14 +68,15 @@ function verificarTeclaPresionada() {
           }
         }
       }
+      if (!letraValida) {
+        dibujarLetraIncorrecta(event.key, intentos);
+        intentos += 1;
+        dibujarHorca(intentos);
+        finDelJuego(intentos);
+      }
     }
-    if (!letraValida) {
-      dibujarLetraIncorrecta(event.key, intentos);
-      intentos += 1;
-      dibujarHorca(intentos);
-      finDelJuego(intentos);
-    }
-    return letraValida;
+    console.log(letraRepetida);
+    return;
   });
 }
 
@@ -69,4 +85,3 @@ function finDelJuego(intentos) {
     dibujarFinDelJuego();
   }
 }
-
