@@ -1,4 +1,4 @@
-//Función que dibuja el tablero 
+//Función que dibuja el tablero
 function dibujarTablero(x) {
   var pantalla = document.querySelector("#ahorcado");
   var pincel = pantalla.getContext("2d");
@@ -133,11 +133,6 @@ function dibujarGanaste() {
   pincel.fillStyle = "black";
   pincel.font = "bold 15px Arial";
   pincel.fillText("Precione cualquier tecla para terminar", 500, 550);
-  //Al tocar cualquier tecla recarga la pagina para volver a empezar
-  window.addEventListener("keydown", function (event) {
-    event.preventDefault();
-    location.reload();
-  });
 }
 
 //Función que dibuja las lineas de la palabra elejida al azar
@@ -150,7 +145,7 @@ function dibujarLineas(cantidad) {
     pincel.strokeStyle = "black";
     pincel.beginPath();
     pincel.moveTo(x, 780);
-    pincel.lineTo(x + 30, 780);
+    pincel.lineTo(x + 20, 780);
     pincel.stroke();
   }
 }
@@ -159,29 +154,30 @@ function dibujarLineas(cantidad) {
 function dibujarLetraCorrecta(letraCorrecta, posicion) {
   var pantalla = document.querySelector("#ahorcado");
   var pincel = pantalla.getContext("2d");
-  console.log(letraCorrecta);
-  console.log(posicion);
-   if (posicion >= 1) {
+
+  if (posicion === 0) {
     pincel.fillStyle = "blue";
     pincel.font = "bold 25px Arial";
-    pincel.fillText(letraCorrecta, posicion * 40 + 625, 775);
+    pincel.fillText(letraCorrecta, posicion * 40 + 600, 775);
     pincel.textAlign = "right";
   }
-  if (posicion == 0) {
+  if (posicion >= 1) {
     pincel.fillStyle = "blue";
     pincel.font = "bold 25px Arial";
-    pincel.fillText(letraCorrecta, posicion * 40 + 607, 775);
+    pincel.fillText(letraCorrecta, posicion * 40 + 615, 775);
     pincel.textAlign = "right";
   }
+  return;
 }
 
 //Función que va dibujando la letra incorrecta.
-function dibujarLetraIncorrecta(letraIncorrecta, posicion) {
+function dibujarLetraIncorrecta(letraIncorrecta, intentos) {
   var pantalla = document.querySelector("#ahorcado");
   var pincel = pantalla.getContext("2d");
 
   pincel.fillStyle = "red";
   pincel.font = "bold 25px Arial";
-  pincel.fillText(letraIncorrecta, posicion * 40 + 625, 300);
+  pincel.fillText(letraIncorrecta, intentos * 40 + 625, 300);
   pincel.textAlign = "left";
+  return;
 }
