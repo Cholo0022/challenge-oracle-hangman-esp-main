@@ -1,3 +1,4 @@
+//Función que dibuja el tablero 
 function dibujarTablero(x) {
   var pantalla = document.querySelector("#ahorcado");
   var pincel = pantalla.getContext("2d");
@@ -12,10 +13,11 @@ function dibujarTablero(x) {
   return pincel;
 }
 
+//Función que va dibujando la horca a medida erran la letra a coincidir
 function dibujarHorca(intentos) {
   var pantalla = document.querySelector("#ahorcado");
   var pincel = pantalla.getContext("2d");
-  //error 1
+  // Dibuja el primer error de la horca
   if (intentos == 1) {
     for (var y = 780; y > 200; y--) {
       pincel.fillStyle = "black";
@@ -24,7 +26,7 @@ function dibujarHorca(intentos) {
       pincel.fill();
     }
   }
-  //error 2
+  // Dibuja el segundo error de la horca
   if (intentos == 2) {
     for (var x = 150; x < 400; x++) {
       pincel.fillStyle = "black";
@@ -33,7 +35,7 @@ function dibujarHorca(intentos) {
       pincel.fill();
     }
   }
-  //error 3
+  // Dibuja el tercer error de la horca
   if (intentos == 3) {
     for (var y = 200; y < 300; y++) {
       pincel.fillStyle = "black";
@@ -42,7 +44,7 @@ function dibujarHorca(intentos) {
       pincel.fill();
     }
   }
-  //error4
+  // Dibuja el cuarto error de la horca
   if (intentos == 4) {
     pincel.fillStyle = "black";
     pincel.beginPath();
@@ -53,7 +55,7 @@ function dibujarHorca(intentos) {
     pincel.arc(400, 300, 45, 0, 2 * 3.14);
     pincel.fill();
   }
-  //error 5
+  // Dibuja el quinto error de la horca
   if (intentos == 5) {
     for (var y = 350; y < 550; y++) {
       pincel.fillStyle = "black";
@@ -62,7 +64,7 @@ function dibujarHorca(intentos) {
       pincel.fill();
     }
   }
-  //error 6 brazo izq
+  // Dibuja el sexto error de la horca
   if (intentos == 6) {
     pincel.lineWidth = 10;
     pincel.strokeStyle = "black";
@@ -71,7 +73,7 @@ function dibujarHorca(intentos) {
     pincel.lineTo(400, 450);
     pincel.stroke();
   }
-  //error 7 brazo der
+  // Dibuja el septimo error de la horca
   if (intentos == 7) {
     pincel.lineWidth = 10;
     pincel.strokeStyle = "black";
@@ -80,7 +82,7 @@ function dibujarHorca(intentos) {
     pincel.lineTo(550, 350);
     pincel.stroke();
   }
-  //error 8 pierna izq
+  // Dibuja el octavo error de la horca
   if (intentos == 8) {
     pincel.lineWidth = 10;
     pincel.strokeStyle = "black";
@@ -89,7 +91,7 @@ function dibujarHorca(intentos) {
     pincel.lineTo(300, 700);
     pincel.stroke();
   }
-  //error 8 pierna der
+  // Dibuja el último error de la horca
   if (intentos == 9) {
     pincel.lineWidth = 10;
     pincel.strokeStyle = "black";
@@ -98,13 +100,13 @@ function dibujarHorca(intentos) {
     pincel.lineTo(500, 700);
     pincel.stroke();
   }
+  //Al presionar una tecla recargo la pagina para terminar el juego.
   if (intentos >= 10) {
     location.reload();
   }
-
-  return;
 }
 
+//Función que dibuja el mensaje cuando se pierde el juego
 function dibujarFinDelJuego() {
   var pantalla = document.querySelector("#ahorcado");
   var pincel = pantalla.getContext("2d");
@@ -119,6 +121,7 @@ function dibujarFinDelJuego() {
   return;
 }
 
+//Función que dibuja el mensaje de ganador
 function dibujarGanaste() {
   var pantalla = document.querySelector("#ahorcado");
   var pincel = pantalla.getContext("2d");
@@ -130,13 +133,14 @@ function dibujarGanaste() {
   pincel.fillStyle = "black";
   pincel.font = "bold 15px Arial";
   pincel.fillText("Precione cualquier tecla para terminar", 500, 550);
+  //Al tocar cualquier tecla recarga la pagina para volver a empezar
   window.addEventListener("keydown", function (event) {
     event.preventDefault();
     location.reload();
   });
-  return;
 }
 
+//Función que dibuja las lineas de la palabra elejida al azar
 function dibujarLineas(cantidad) {
   var pantalla = document.querySelector("#ahorcado");
   var pincel = pantalla.getContext("2d");
@@ -151,24 +155,27 @@ function dibujarLineas(cantidad) {
   }
 }
 
+//Función que va dibujando las letras acertadas en la posición correspondiente.
 function dibujarLetraCorrecta(letraCorrecta, posicion) {
   var pantalla = document.querySelector("#ahorcado");
   var pincel = pantalla.getContext("2d");
-
+  console.log(letraCorrecta);
+  console.log(posicion);
+   if (posicion >= 1) {
+    pincel.fillStyle = "blue";
+    pincel.font = "bold 25px Arial";
+    pincel.fillText(letraCorrecta, posicion * 40 + 625, 775);
+    pincel.textAlign = "right";
+  }
   if (posicion == 0) {
     pincel.fillStyle = "blue";
     pincel.font = "bold 25px Arial";
     pincel.fillText(letraCorrecta, posicion * 40 + 607, 775);
     pincel.textAlign = "right";
   }
-  if (posicion >= 1) {
-    pincel.fillStyle = "blue";
-    pincel.font = "bold 25px Arial";
-    pincel.fillText(letraCorrecta, posicion * 40 + 625, 775);
-    pincel.textAlign = "right";
-  }
 }
 
+//Función que va dibujando la letra incorrecta.
 function dibujarLetraIncorrecta(letraIncorrecta, posicion) {
   var pantalla = document.querySelector("#ahorcado");
   var pincel = pantalla.getContext("2d");
@@ -177,7 +184,4 @@ function dibujarLetraIncorrecta(letraIncorrecta, posicion) {
   pincel.font = "bold 25px Arial";
   pincel.fillText(letraIncorrecta, posicion * 40 + 625, 300);
   pincel.textAlign = "left";
-
-  dibujarHorca();
-  return;
 }
