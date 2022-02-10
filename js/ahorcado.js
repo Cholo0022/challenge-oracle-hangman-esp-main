@@ -80,8 +80,8 @@ function verificarTeclaPresionada() {
         //Al tocar cualquier tecla recarga la pagina para volver a empezar, redirigiendo al principio.
         window.addEventListener("keydown", function (event) {
           dibujarTablero();
-          location.reload();
           titulo.scrollIntoView();
+          location.reload();
         });
       }
       //Si no hay coincidencias entre la palabra elejida al azar y la tecleada, entonces llamamos a la función que dibuje letra incorrecta,
@@ -102,6 +102,5 @@ function verificarTeclaPresionada() {
 function finDelJuego(intentos) {
   if (intentos == 9) {
     dibujarFinDelJuego();
-    dibujarTablero();
   }
 }
